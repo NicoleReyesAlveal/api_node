@@ -9,3 +9,5 @@ After cloning the repository,  install these dependencies
     "mongoose": "^5.12.8"
   }
   ```
+Run the following command: 
+`$ node app.js`
