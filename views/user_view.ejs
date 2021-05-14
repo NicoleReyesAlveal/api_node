@@ -1,0 +1,14 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>University data</title>
+  </head>
+  <body>
+    <h1>Users list</h1>
+    <% users.forEach(function(user){ %>
+    <li> <%= user.name %> </li>
+    <% }); %>
+ </body>
+</html>
