@@ -42,7 +42,7 @@ app.get('/users/:id', async (req, res) => {
         }
 });
 
-//verificar que recursos exitan???? que no se repita?
+//verificar que recursos existan???? que no se repita?
 app.post('/users', async (req, res) => {
     const user = new userModel(req.body);
     try {
@@ -55,13 +55,11 @@ app.post('/users', async (req, res) => {
 
 app.patch('/users/:id', async (req, res) => {
     try {
-        const user = userModel.findByIdAndUpdate(req.params.id, req.body);
+        const user = await userModel.findByIdAndUpdate(req.params.id, req.body, {new: true});
         if(!user) {
             return res.status(404).json({error: "User not found"});
         };
-        console.log(user);
-       await userModel.save();
-       res.send(user);
+       res.status(200).send(user);
    } catch (error) {
        res.status(500).send(error);
    }
@@ -80,7 +78,6 @@ app.delete('/users/:id', async (req, res) => {
 //Student CRUD
 app.get('/students', async (req, res) => {
     const students = await studentModel.find({});
-    console.log(students);
     try {
         res.send(students);
     } catch (error) {
@@ -112,11 +109,12 @@ app.post('/students', async (req, res) => {
 });
 
 app.patch('/students/:id', async (req, res) => {
-   try {
-       await studentModel.findByIdAndUpdate(req.params.id, req.body);
-       if(!student) res.status(404).send("Student not found");
-       await studentModel.save();
-       res.send(student);
+    try {
+        const student = await studentModel.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        if(!student) {
+            return res.status(404).json({error: "Student not found"});
+        };
+        res.status(200).send(student);
    } catch (error) {
        res.status(500).send(error);
    }
@@ -168,11 +166,12 @@ app.post('/courses', async (req, res) => {
 });
 
 app.patch('/courses/:id', async (req, res) => {
-   try {
-       await courseModel.findByIdAndUpdate(req.params.id, req.body);
-       if(!course) res.status(404).send("Course not found");
-       await courseModel.save();
-       res.send(course);
+    try {
+        const course = await courseModel.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        if(!course) {
+            return res.status(404).json({error: "Course not found"});
+        };
+        res.status(200).send(course);
    } catch (error) {
        res.status(500).send(error);
    }
@@ -224,11 +223,12 @@ app.post('/enrollments', async (req, res) => {
 });
 //TODO patch only one resource, not replacing every field
 app.patch('/enrollments/:id', async (req, res) => {
-   try {
-       await enrollmentModel.findByIdAndUpdate(req.params.id, req.body);
-       if(!enrollment) res.status(404).send("Enrollment not found");
-       await enrollmentModel.save();
-       res.send(enrollment);
+    try {
+        const enrollment = await enrollmentModel.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        if(!enrollment) {
+            return res.status(404).json({error: "Enrollment not found"});
+        };
+        res.status(200).send(enrollment);
    } catch (error) {
        res.status(500).send(error);
    }
