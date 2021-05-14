@@ -1,4 +1,6 @@
 
+First install NodeJS: `$ brew install node`
+
 After cloning the repository,  install these dependencies
 ```javascript
   "dependencies": {
