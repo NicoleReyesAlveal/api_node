@@ -6,20 +6,16 @@ const enrollmentModel = require('./models/enrollment.js');
 
 const app = express()
 
-app.set('view engine', 'ejs');
 
-//routes
+//Routes
 
 app.get('/', async (req, res) => {
    try {
-    res.render('index.ejs');
+    res.status(200).json({message: "Root endpoint"});
    } catch (error) {
     res.status(500).send(error);
    }
 });
-
-//TODO verificar que existe recurso post patch
-//TODO findByIdAndUpdate actualice un solo field
 
 //User CRUD
 app.get('/users', async (req, res) => {
@@ -30,11 +26,12 @@ app.get('/users', async (req, res) => {
             res.status(500).send(error);
         }
 });
-//get user by id
+
+//Get user by id
 app.get('/users/:id', async (req, res) => {
     const user = await userModel.findById(req.params.id);
     if (!user) {
-        return res.status(400).json({error: "user not found"});
+        return res.status(400).json({error: "User not found"});
     };
         try {
             res.send(user);
@@ -43,7 +40,6 @@ app.get('/users/:id', async (req, res) => {
         }
 });
 
-//verificar que recursos existan???? que no se repita?
 app.post('/users', async (req, res) => {
     const user = new userModel(req.body);
     try {
@@ -85,11 +81,12 @@ app.get('/students', async (req, res) => {
         res.status(500).send(error);
     }
 });
-//get student by id
+
+//Get student by id
 app.get('/students/:id', async (req, res) => {
     const student = await studentModel.findById(req.params.id);
     if (!student) {
-        return res.status(400).json({error: "student not found"});
+        return res.status(400).json({error: "Student not found"});
     };
         try {
             res.send(student);
@@ -140,11 +137,12 @@ app.get('/courses', async (req, res) => {
         res.status(500).send(error);
     }
 });
-//get course by id
+
+//Get course by id
 app.get('/courses/:id', async (req, res) => {
     const course = await courseModel.findById(req.params.id);
     if (!course) {
-        return res.status(400).json({error: "course not found"});
+        return res.status(400).json({error: "Course not found"});
     };
         try {
             res.send(course);
@@ -197,11 +195,11 @@ app.get('/enrollments', async (req, res) => {
     }
 });
 
-//get enrollment by id
+//Get enrollment by id
 app.get('/enrollments/:id', async (req, res) => {
     const enrollment = await enrollmentModel.findById(req.params.id);
     if (!enrollment) {
-        return res.status(400).json({error: "enrollment not found"});
+        return res.status(400).json({error: "Enrollment not found"});
     };
         try {
             res.send(enrollment);
@@ -220,7 +218,8 @@ app.post('/enrollments', async (req, res) => {
         res.status(500).send(error);
     }
 });
-//TODO patch only one resource, not replacing every field
+
+
 app.patch('/enrollments/:id', async (req, res) => {
     try {
         const enrollment = await enrollmentModel.findByIdAndUpdate(req.params.id, req.body, {new: true});
