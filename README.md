@@ -1,8 +1,9 @@
 
-First install NodeJS: `$ brew install node`
+First install NodeJS:
+`$ brew install node`
 
 After cloning the repository,  install these dependencies
-```javascript
+```
   "dependencies": {
     "body-parser": "^1.19.0",
     "ejs": "^3.1.6",
@@ -11,5 +12,8 @@ After cloning the repository,  install these dependencies
     "mongoose": "^5.12.8"
   }
   ```
-Run the following command: 
+Running the following command: 
+`$ npm install <dependency_name>`
+
+To run the server:
 `$ node app.js`
