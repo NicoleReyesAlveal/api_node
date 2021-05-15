@@ -70,7 +70,7 @@ app.delete('/users/:id', async (req, res) => {
     try {
         const user = await userModel.findByIdAndDelete(req.params.id);
         if(!user) res.status(404).send("User not found");
-        res.status(200).send();
+        res.status(200).json(user);
     } catch (error) {
         res.status(500).send(error);
     }
@@ -125,7 +125,7 @@ app.delete('/students/:id', async (req, res) => {
     try {
         const student = await studentModel.findByIdAndDelete(req.params.id);
         if(!student) res.status(404).send("Student not found");
-        res.status(200).send();
+        res.status(200).json(student);
     } catch (error) {
         res.status(500).send(error);
     }
@@ -181,7 +181,7 @@ app.delete('/courses/:id', async (req, res) => {
     try {
         const course = await courseModel.findByIdAndDelete(req.params.id);
         if(!course) res.status(404).send("Course not found");
-        res.status(200).send();
+        res.status(200).json(course);
     } catch (error) {
         res.status(500).send(error);
     }
@@ -237,10 +237,25 @@ app.delete('/enrollments/:id', async (req, res) => {
     try {
         const enrollment = await enrollmentModel.findByIdAndDelete(req.params.id);
         if(!enrollment) res.status(404).send("Enrollment not found");
-        res.status(200).send();
+        res.status(200).json(enrollment);
     } catch (error) {
         res.status(500).send(error);
     }
+});
+
+//add student to enrollment
+app.patch('/enrollment/:id', async (req, res) => {
+    try {
+        const enrollment = await enrollmentModel.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        if (!enrollment) {
+            return res.status(404).json({error: "Enrollment not found"});
+        }
+        enrollment.students.push({name: req.params.name, credits: req.params.credits});
+        res.status(200).json(enrollment);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+
 });
 
 module.exports = app;
