@@ -19,7 +19,8 @@ app.get('/', async (req, res) => {
 });
 
 //TODO verificar que existe recurso post patch
-//todo findByIdAndUpdate actualice un solo field
+//TODO findByIdAndUpdate actualice un solo field
+
 //User CRUD
 app.get('/users', async (req, res) => {
     const users = await userModel.find({});
@@ -133,7 +134,6 @@ app.delete('/students/:id', async (req, res) => {
 //Course CRUD
 app.get('/courses', async (req, res) => {
     const courses = await courseModel.find({});
-    console.log(courses);
     try {
         res.send(courses);
     } catch (error) {
@@ -190,7 +190,6 @@ app.delete('/courses/:id', async (req, res) => {
 //Enrollment CRUD
 app.get('/enrollments', async (req, res) => {
     const enrollments = await enrollmentModel.find({});
-    console.log(enrollments);
     try {
         res.send(enrollments);
     } catch (error) {
