@@ -18,3 +18,5 @@ running the following command:
 
 To run the server:
 `$ node app.js`
+
+Use the endpoints with Postman or Insomnia, they're in the router file.
