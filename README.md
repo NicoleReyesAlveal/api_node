@@ -2,6 +2,7 @@
 First install NodeJS:
 `$ brew install node`
 
+
 After cloning the repository,  install these dependencies
 ```
   "dependencies": {
@@ -11,8 +12,9 @@ After cloning the repository,  install these dependencies
     "mongoose": "^5.12.8"
   }
   ```
-Running the following command: 
+running the following command: 
 `$ npm install <dependency_name>`
+
 
 To run the server:
 `$ node app.js`
