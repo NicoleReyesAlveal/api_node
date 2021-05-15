@@ -14,7 +14,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
 //MongoDB connection string
-const uri = 'mongodb+srv://${process.env.ATLAS_READ_ONLY_USER_NAME}:${process.env.ATLAS_READ_ONLY_USER_PASSWORD}@cluster0.w37q3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+//const uri = 'mongodb+srv://${process.env.ATLAS_READ_ONLY_USER_NAME}:${process.env.ATLAS_READ_ONLY_USER_PASSWORD}@cluster0.w37q3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const uri = 'mongodb+srv://bunkey-user:Bunk3y!@cluster0.w37q3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 //Mongoose connection
 mongoose.connect(uri,{useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false}, (err, client) => {
