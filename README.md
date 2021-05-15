@@ -1,5 +1,5 @@
 
-First install NodeJS:
+First install NodeJS:  
 `$ brew install node`
 
 
@@ -12,11 +12,15 @@ After cloning the repository,  install these dependencies
     "mongoose": "^5.12.8"
   }
   ```
-running the following command: 
+running the following command:  
 `$ npm install <dependency_name>`
 
 
-To run the server:
+To run the server:  
 `$ node app.js`
 
-Use the endpoints with Postman or Insomnia, they're in the router file.
+Once the server is running, you should see this message:  
+`Connected to Mongodb Atlas.`  
+`Listening at http://localhost:3000`  
+
+Finally, use the endpoints with Postman or Insomnia, they're in the router file.
